@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef _PARSEARGS_H_
+#define _PARSEARGS_H_
 
 int parse(char *input, char argv[][64], int *bg)
 {
@@ -24,3 +26,5 @@ int parse(char *input, char argv[][64], int *bg)
 
     return num_args;
 }
+
+#endif
