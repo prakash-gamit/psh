@@ -5,26 +5,9 @@
 #ifndef _PARSEARGS_H_
 #define _PARSEARGS_H_
 
-int parse(char *input, char argv[][64], int *bg)
-{
-    char *delim = " \t\n";
-    char *token = strtok(input, delim);
-    int num_args = 0;
 
-    while(token != NULL){
-        if(!strcmp(token, "&")){
-            *bg = 1; // run in background
-            break;
-        }
+// parse command and arguments
+int parse(char *input, char argv[][64], int *bg);
 
-        strcpy(*argv++, token);
-        num_args++;
-        token = strtok(NULL, delim);
-    }
-    // end argument list
-    strcpy(*argv, "\0");
-
-    return num_args;
-}
 
 #endif
