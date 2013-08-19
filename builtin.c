@@ -24,8 +24,8 @@ void execute_builtin(char *command, char **argv)
 {
     if(!strcmp(command, "cd")){
         // cd to argv[1] directory
-        if(chdir(argv[1]) < 0){
-            perror("chdir");
+        if(argv[1] != NULL && chdir(argv[1]) < 0){
+            fprintf(stderr, "%s : path not found! :(\n", argv[1]);
         }
     }else if(!strcmp(command, "exit")){
         exit(EXIT_SUCCESS);
