@@ -30,6 +30,6 @@ void execute_builtin(char *command, char **argv)
     }else if(!strcmp(command, "exit")){
         exit(EXIT_SUCCESS);
     }else{
-        fprintf(stderr, "%s command not supported yet! :(\n", command);
+        fprintf(stderr, "%s : command not found! :(\n", command);
     }
 }
