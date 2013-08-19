@@ -20,7 +20,10 @@ void execute(char **argv, const int bg)
 
     }else if(child_pid == 0){
         //child process = exec command
-        execvp(command, argv);
+        if(execvp(command, argv) == -1){
+            fprintf(stderr, "%s : command not found! :(\n", command);
+            exit(EXIT_FAILURE);
+        }
 
     }else{
         //parent process
