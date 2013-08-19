@@ -20,6 +20,11 @@ int main()
         printf("command >");
         fgets(line, MAX_COMMAND_LEN, stdin);
 
+        if(feof(stdin)){
+            printf("\n");
+            exit(EXIT_SUCCESS);
+        }
+
         if(!strcmp(line, "\0") || !strcmp(line, "\n"))
             continue;
 
