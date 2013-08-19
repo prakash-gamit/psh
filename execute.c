@@ -1,4 +1,5 @@
 #include "execute.h"
+#include "builtin.h"
 
 
 void execute(char **argv, const int bg)
@@ -11,8 +12,14 @@ void execute(char **argv, const int bg)
         perror("fork");
 
     }else if(child_pid == 0){
-        //child process = exec command
-        execvp(command, argv);
+        //check if its a builtin command
+        if(is_builtin(command) != -1){
+            execute_builtin(command, argv);
+            exit(EXIT_SUCCESS);
+        }else{
+            //child process = exec command
+            execvp(command, argv);
+        }
 
     }else{
         //parent process
