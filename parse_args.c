@@ -1,7 +1,7 @@
 #include "parse_args.h"
 
 
-int parse(char *input, char argv[][64], int *bg)
+int parse(char *input, char **argv, int *bg)
 {
     char *delim = " \t\n";
     char *token = strtok(input, delim);
@@ -13,12 +13,12 @@ int parse(char *input, char argv[][64], int *bg)
             break;
         }
 
-        strcpy(*argv++, token);
+        *argv++ = token;
         num_args++;
         token = strtok(NULL, delim);
     }
     // end argument list
-    strcpy(*argv, "\0");
+    *argv = NULL;
 
     return num_args;
 }

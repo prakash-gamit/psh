@@ -7,7 +7,7 @@
 
 
 // parse command and arguments
-int parse(char *input, char argv[][64], int *bg);
+int parse(char *input, char **argv, int *bg);
 
 
 #endif
