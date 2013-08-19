@@ -6,20 +6,21 @@ void execute(char **argv, const int bg)
 {
     char *command = argv[0];
 
+    //check if its a builtin command
+    //no need to fork & exec if builtin command
+    if(is_builtin(command) != -1){
+        execute_builtin(command, argv);
+        return;
+    }
+
     //fork a child process
     int child_pid;
     if((child_pid = fork()) < 0){
         perror("fork");
 
     }else if(child_pid == 0){
-        //check if its a builtin command
-        if(is_builtin(command) != -1){
-            execute_builtin(command, argv);
-            exit(EXIT_SUCCESS);
-        }else{
-            //child process = exec command
-            execvp(command, argv);
-        }
+        //child process = exec command
+        execvp(command, argv);
 
     }else{
         //parent process
